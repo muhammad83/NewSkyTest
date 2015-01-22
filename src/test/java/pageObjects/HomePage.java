@@ -27,4 +27,15 @@ public class HomePage {
         driver.findElement(By.id("skycom-search")).click();
     }
 
+    public String getTitle() {
+        return driver.getTitle();
+    }
+
+    public String getFindAndSearchBarDefaultText() {
+        return driver.findElement(By.id("search-placeholder")).getText();
+    }
+
+    public void close() {
+        driver.close();
+    }
 }
