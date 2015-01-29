@@ -1,9 +1,12 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sharedDriver.SharedDriver;
 
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.linkText;
+import static org.openqa.selenium.By.xpath;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 /**
@@ -17,17 +20,26 @@ public class ShowPage {
         this.driver = driver;
     }
 
-    private void waitforPageToLoad(){
-        (new WebDriverWait(driver,10)).until(visibilityOfElementLocated(id(linkBar)));
+    private void waitforPageToLoad() {
+        (new WebDriverWait(driver, 10)).until(visibilityOfElementLocated(id(linkBar)));
     }
 
-    public void verifyHighlightTabSelected() {
+    public boolean verifyHighlightTabSelected() {
         waitforPageToLoad();
-        driver.findElement(id("tab-highlights")).getAttribute("class").equals("tab selected highlights");
+        return driver.findElement(id("tab-highlights")).getAttribute("class").equals("tab selected highlights");
     }
 
-    public void verifyEpisodesTabSelected() {
+    public boolean verifyEpisodesTabSelected() {
         waitforPageToLoad();
-        driver.findElement(id("tab-episodes")).getAttribute("class").equals("tab selected episodes");
+        return driver.findElement(id("tab-episodes")).getAttribute("class").equals("tab selected episodes");
+    }
+
+    public void clickOnLink(String linkText) {
+        driver.findElement(linkText(linkText)).click();
+    }
+
+    public int verifySeasonEpisodesAvailableFor(int seasonNo) {
+//        driver.findElement(xpath("//div[@id='seasons']/div[3]/div/span")).getText().contains("Season" + seasonNo);
+        return driver.findElement(By.xpath("//div[@id='seasons']/div[2]/div")).getText().split("\\d+").length - 1;
     }
 }

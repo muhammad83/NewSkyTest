@@ -18,3 +18,36 @@ Feature: Find and Watch Page test
     And I am on the Find and Search page results of "Arrow"
     When I click on "Episodes"
     Then I should see Episodes of Arrow
+
+  Scenario: Open Episodes of the searched series
+    Given I am on the episodes page of Arrow
+    When I click on season "1"
+    Then I should see 23 episodes of season 1
+
+  Scenario: Open Episodes of the searched series
+    Given I am on the episodes page of Arrow
+    When I click on season "1"
+    Then I should see the following episodes
+      | Sacrifice                    |
+      | Darkness on the Edge of Town |
+      | The Undertaking              |
+      | Home Invasion                |
+      | Unfinished Business          |
+      | Salvation                    |
+      | The Huntress Returns         |
+      | Dead to Rights               |
+      | Dodger                       |
+      | The Odyssey                  |
+      | Betrayal                     |
+      | Vertigo                      |
+      | Trust but Verify             |
+      | Burned                       |
+      | Year's End                   |
+      | Vendetta                     |
+      | Muse of Fire                 |
+      | Legacies                     |
+      | Damaged                      |
+      | An Innocent Man              |
+      | Lone Gunman                  |
+      | Honour Thy Father            |
+      | Pilot                        |

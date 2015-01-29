@@ -1,6 +1,6 @@
 package stepDef;
 
-import cucumber.api.java.After;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -10,6 +10,10 @@ import pageObjects.HomePage;
 import pageObjects.ShowPage;
 import sharedDriver.SharedDriver;
 
+import java.util.Iterator;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -72,17 +76,35 @@ public class findAndWatchStepDefs {
     @Then("^I should see (Highlights|Episodes) of Arrow$")
     public void I_should_see_of_Arrow(String tabName) throws Throwable {
         if (tabName.equalsIgnoreCase(HIGHLIGHTS)) {
-            showPage.verifyHighlightTabSelected();
-        }
-        else
-        {
-            showPage.verifyEpisodesTabSelected();
+            assertTrue(showPage.verifyHighlightTabSelected());
+        } else {
+            assertTrue(showPage.verifyEpisodesTabSelected());
         }
     }
 
-    @After
-    public void cleanUp() {
-        homePage.close();
+    @Given("^I am on the episodes page of Arrow$")
+    public void I_am_on_the_episodes_page_of_Arrow() throws Throwable {
+        homePage.SelectTvOption();
+        homePage.SearchShowing("Arrow");
+        findAndSearchPage.clickOnLink("Episodes");
+    }
+
+    @When("^I click on season \"([^\"]*)\"$")
+    public void I_click_on_season(String seasonNo) throws Throwable {
+        showPage.clickOnLink(seasonNo);
+    }
+
+    @Then("^I should see (\\d+) episodes of season (\\d+)$")
+    public void I_should_see_episodes_of_season(int totalEpisodes, int seasonNo) throws Throwable {
+        assertEquals(showPage.verifySeasonEpisodesAvailableFor(seasonNo), totalEpisodes);
+    }
+
+    @Then("^I should see the following episodes$")
+    public void I_should_see_the_following_episodes(List<String> episodes) throws Throwable {
+        for(Iterator<String> i = episodes.iterator(); i.hasNext();){
+
+        }
+
     }
 
     private void verifyOnFindAndSearchResultsPage(String showName) {
