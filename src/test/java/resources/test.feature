@@ -12,3 +12,9 @@ Feature: Find and Watch Page test
     And I am on the Find and Search page results of "Arrow"
     When I click on "Find Out More"
     Then I should see Highlights of Arrow
+
+  Scenario: Open Episodes of the searched series
+    Given I have searched for "Arrow" series
+    And I am on the Find and Search page results of "Arrow"
+    When I click on "Episodes"
+    Then I should see Episodes of Arrow

@@ -74,6 +74,10 @@ public class findAndWatchStepDefs {
         if (tabName.equalsIgnoreCase(HIGHLIGHTS)) {
             showPage.verifyHighlightTabSelected();
         }
+        else
+        {
+            showPage.verifyEpisodesTabSelected();
+        }
     }
 
     @After

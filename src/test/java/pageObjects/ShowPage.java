@@ -17,12 +17,17 @@ public class ShowPage {
         this.driver = driver;
     }
 
-    private void pageloaded(){
+    private void waitforPageToLoad(){
         (new WebDriverWait(driver,10)).until(visibilityOfElementLocated(id(linkBar)));
     }
 
     public void verifyHighlightTabSelected() {
-        pageloaded();
-        driver.findElement(id("tab-highlights")).getAttribute("class").contains("tab selected");
+        waitforPageToLoad();
+        driver.findElement(id("tab-highlights")).getAttribute("class").equals("tab selected highlights");
+    }
+
+    public void verifyEpisodesTabSelected() {
+        waitforPageToLoad();
+        driver.findElement(id("tab-episodes")).getAttribute("class").equals("tab selected episodes");
     }
 }
