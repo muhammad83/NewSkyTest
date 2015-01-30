@@ -1,8 +1,12 @@
 package pageObjects;
 
+import com.google.common.collect.Lists;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sharedDriver.SharedDriver;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.linkText;
@@ -40,6 +44,10 @@ public class ShowPage {
 
     public int verifySeasonEpisodesAvailableFor(int seasonNo) {
 //        driver.findElement(xpath("//div[@id='seasons']/div[3]/div/span")).getText().contains("Season" + seasonNo);
-        return driver.findElement(By.xpath("//div[@id='seasons']/div[2]/div")).getText().split("\\d+").length - 1;
+        return driver.findElement(xpath("//div[@id='seasons']/div[2]/div")).getText().split("\\d+").length - 1;
+    }
+
+    public List<String> getSeasonEpisodes() {
+        return Arrays.asList(driver.findElement(xpath("//div[@id='seasons']/div[2]/div")).getText().split("\\d+"));
     }
 }

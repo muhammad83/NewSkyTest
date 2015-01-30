@@ -1,5 +1,6 @@
 package stepDef;
 
+import com.google.common.collect.Lists;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -10,8 +11,7 @@ import pageObjects.HomePage;
 import pageObjects.ShowPage;
 import sharedDriver.SharedDriver;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -101,9 +101,8 @@ public class findAndWatchStepDefs {
 
     @Then("^I should see the following episodes$")
     public void I_should_see_the_following_episodes(List<String> episodes) throws Throwable {
-        for(Iterator<String> i = episodes.iterator(); i.hasNext();){
 
-        }
+        assertTrue(episodes.containsAll(showPage.getSeasonEpisodes()));
 
     }
 
