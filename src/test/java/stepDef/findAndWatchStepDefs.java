@@ -101,7 +101,6 @@ public class findAndWatchStepDefs {
 
     @Then("^I should see the following episodes$")
     public void I_should_see_the_following_episodes(List<String> episodes) throws Throwable {
-
         assertTrue(episodes.containsAll(showPage.getSeasonEpisodes()));
 
     }

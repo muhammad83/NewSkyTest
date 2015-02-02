@@ -1,16 +1,13 @@
 package pageObjects;
 
-import com.google.common.collect.Lists;
-import org.openqa.selenium.By;
+import org.apache.commons.lang3.ArrayUtils;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sharedDriver.SharedDriver;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.openqa.selenium.By.id;
-import static org.openqa.selenium.By.linkText;
-import static org.openqa.selenium.By.xpath;
+import static org.openqa.selenium.By.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 /**
@@ -48,6 +45,14 @@ public class ShowPage {
     }
 
     public List<String> getSeasonEpisodes() {
-        return Arrays.asList(driver.findElement(xpath("//div[@id='seasons']/div[2]/div")).getText().split("\\d+"));
+        return removeNewLineCharacter(Arrays.asList(ArrayUtils.remove(driver.findElement(xpath("//div[@id='seasons']/div[2]/div")).getText().split("\\d+"), 0)));
+    }
+
+    private List<String> removeNewLineCharacter(List<String> episodes) {
+        int index = 0;
+        for (String episode : episodes) {
+            episodes.set(index++, episode.replace("\n", ""));
+        }
+        return episodes;
     }
 }

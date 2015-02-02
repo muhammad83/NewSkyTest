@@ -19,12 +19,12 @@ Feature: Find and Watch Page test
     When I click on "Episodes"
     Then I should see Episodes of Arrow
 
-  Scenario: Open Episodes of the searched series
+  Scenario: Check if season 1 has 23 episodes
     Given I am on the episodes page of Arrow
     When I click on season "1"
     Then I should see 23 episodes of season 1
 
-  Scenario: Open Episodes of the searched series
+  Scenario: Check if all the episodes are being shown
     Given I am on the episodes page of Arrow
     When I click on season "1"
     Then I should see the following episodes
